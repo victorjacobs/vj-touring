@@ -1,0 +1,23 @@
+{
+  "uuid": "74543910-51fa-48f8-bfd5-6d9f96b52b89",
+  "shortName": "VJTouring",
+  "longName": "Travel Times",
+  "companyName": "Victor Jacobs",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite", "basalt"],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "KEY_HW_TRAVEL_TIME": 0,
+    "KEY_HW_DELAY": 1,
+    "KEY_WH_TRAVEL_TIME": 2,
+    "KEY_WH_DELAY": 3
+  },
+  "resources": {
+    "media": []
+  },
+  "capabilities": ["location"]
+}
