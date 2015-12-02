@@ -38,8 +38,7 @@ Pebble.addEventListener('appmessage',
 function sendTravelTimesToPebble() {
 	getTravelTimeForAllLocations(function(travelTimes) {
 		Pebble.sendAppMessage({
-			'KEY_HW_DELAY': travelTimes[1].delay,
-			'KEY_HW_TRAVEL_TIME': travelTimes[1].travelTime
+			'KEY_TRAVELTIMES_DATA': encodeTravelTimesData(travelTimes)
 		},
 		function(e) {
 			console.log('Successfully sent');
@@ -56,9 +55,7 @@ function getTravelTimeForAllLocations(callback) {
 		getTravelTime(destination, function(travelTime) {
 			travelTimes.push({"name": destination.name, "travelTime": travelTime.travelTime, "delay": travelTime.delay});
 			console.log(travelTimes.length + " " + destination.name + ": " + travelTime.travelTime + " " + travelTime.delay + " delay");
-
 			if (index === destinations.length - 1) {
-				console.log(index);
 				callback(travelTimes);
 			}
 		});
@@ -84,7 +81,6 @@ function getTravelTime(loc, callback) {
 	req.open('POST', touringEndpoint + '/service/TravelTimes/Personal3');
 	var message = 
 		baseMessage.supplant({"fromLat": myLocation.coords.latitude, "fromLong": myLocation.coords.longitude, "toLat": loc.latitude, "toLong": loc.longitude});
-	console.log(message);
 	req.send(message);
 }
 
@@ -98,3 +94,10 @@ String.prototype.supplant = function (o) {
         }
     );
 };
+
+function encodeTravelTimesData(travelTimes) {
+	var encoded = '';
+	travelTimes.forEach(function(travelTime, index) {
+		encoded += travelTime.name + ',' + travelTime.travelTime + ',' + travelTime.delay + ';';
+	});
+}

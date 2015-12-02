@@ -11,10 +11,7 @@
     "watchface": false
   },
   "appKeys": {
-    "KEY_HW_TRAVEL_TIME": 0,
-    "KEY_HW_DELAY": 1,
-    "KEY_WH_TRAVEL_TIME": 2,
-    "KEY_WH_DELAY": 3
+    "KEY_TRAVELTIMES_DATA": 0
   },
   "resources": {
     "media": []
